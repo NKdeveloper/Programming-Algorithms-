@@ -1,0 +1,95 @@
+package <default;
+
+///author Nikhil Kanamarla  
+// Selection Sort program uses selection sort to sort a file of integers
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Scanner;
+
+public class selectionsort {
+// Main method to run various processes in the selection sort program 
+public static void main(String[] args) {
+	
+        //Take in the file and create an array from the data
+        int[] dataStorage = ReadInput();
+        
+        //Configure the file using selection sort
+        dataStorage = selectionSort(dataStorage);
+    
+      //Output the data structure to the console 
+        PrintStorage(dataStorage);
+    	}
+
+    	/** Prints the array through a method 
+    	 * @param dataStorage
+    	 */
+    	public static void PrintStorage(int[] dataStorage) {
+    	  for(int x = 0; x < dataStorage.length; x++)
+          {
+             System.out.println(dataStorage[x]); 
+          }
+    }
+    	 /**
+         * Method to sort the dataStorage using selection sort
+         * @param dataStorage
+         * @return dataStorage
+         */
+        public static int[] selectionSort(int[] dataStorage) {
+            //Sort the dataStorage using selection sort
+            	for (int z = 0; z < dataStorage.length - 1; z++) {
+            		int value;
+            		int minimum = z;
+            //Go through the dataStorage to check there is nothing smaller than the min
+                for (int i = z + 1; i < dataStorage.length; i++) {
+                    //If there is set the min to that number
+                    if (dataStorage[i] < dataStorage[minimum]) {
+                        minimum = i;
+                    }
+                	}
+                
+           //Swap the min with the current index (x)
+                if (minimum != z) {
+                    value = dataStorage[z];
+                    dataStorage[z] = dataStorage[minimum];
+                    dataStorage[minimum] = value;
+                }
+            	}
+            //Return the sorted dataStorage
+            	return dataStorage;
+        	}
+    /**
+     * Reads the file of numbers and constructs a array from them
+     * @return dataStorage
+     */
+    public static int[] ReadInput() {
+    	int counter = 0;
+        int value = 0;
+        
+        try {
+            //Make a scanner from the file
+            Scanner find = new Scanner(new BufferedReader(new FileReader("/Users/ElonMusk/Desktop/selectionshort/src/selectionshort/nums.txt")));
+            while (find.hasNext()) {
+                find.next();
+               value++;
+            }
+            find.close();
+            int[] dataStorage = new int[value];
+            //Make another scanner to make the array
+            find = new Scanner(new BufferedReader(new FileReader("/Users/ElonMusk/Desktop/selectionshort/src/selectionshort/nums.txt")));
+            while (find.hasNext()) {
+                dataStorage[counter] = find.nextInt();
+                counter++;
+            }
+            find.close();
+            //Return the structured array
+            return dataStorage;
+            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+     
+        return null;
+    }
+   
+}
