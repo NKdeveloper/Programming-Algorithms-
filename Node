@@ -1,0 +1,51 @@
+package mazesolver;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+public class Node
+{
+    int value;
+    static Node next;
+    static Node top;
+    
+
+    public Node(int v) {
+        value = v;
+    }
+
+    public int getValue() { //gets value of node
+        return value;
+    }
+    public void setValue(int v) { // picks valus of nodes
+        value = v;
+    }
+    public Node getNext() { //moves to new nodes
+        return next;
+    }
+    public void setNext(Node n) { //creates new nodes 
+        next = n;
+    }
+      public void push(Node n) {
+        n.setNext(top);
+        top = n;
+      
+    }
+    
+    public Node pop() {
+        if (top == null) {
+            return null;
+        }
+        Node ret = top;
+        top = top.getNext();
+        ret.setNext(null);
+        return ret;
+    }
+    
+    public Node peek() {
+        return top;
+    }
+}
